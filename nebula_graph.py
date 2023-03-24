@@ -57,7 +57,6 @@ class Nebula:
                 res_entity.append(res[0][0])
         return res_entity
 
-    # def insert_edge(self, edge:dict):
     #
     # def get_entity_all_children(self, tag, vid):
     #
@@ -67,36 +66,6 @@ class Nebula:
     #
     # def delete_edge(self, tag, src_vid, dst_vid):
     #
-    # def update_entity(self, entity: dict):
-
-    def update_entity(self, entity):
-        gql, vid = utils.create_update_entity(entity, self.vid_type)
-        # print(gql)
-        resp = self.session.execute(gql)
-        assert resp.is_succeeded(), resp.error_msg()
-        return resp, vid
-
-    # def upsert_entity(self, entity):
-    #     gql, vid = utils.create_update_entity(entity, self.vid_type)
-    #     print(gql)
-    #     resp = self.session.execute(gql)
-    #     assert resp.is_succeeded(), resp.error_msg()
-    #     return resp, vid
-
-    # def delete_entity(self, entity):
-        # gql, vid = utils.create_update_entity(entity, self.vid_type)
-        # # print(gql)
-        # resp = self.session.execute(gql)
-        # assert resp.is_succeeded(), resp.error_msg()
-        # return resp, vid
-
-    # def delete_edge(self, entity):
-        # gql, vid = utils.create_edit_entity(entity, self.vid_type)
-        # # print(gql)
-        # resp = self.session.execute(gql)
-        # assert resp.is_succeeded(), resp.error_msg()
-        # return resp, vid
-
     def insert_edge(self, edge: dict):
         gql = utils.create_insert_edge(edge=edge, vid_type=self.vid_type)
         resp = self.session.execute(gql)
@@ -108,3 +77,10 @@ class Nebula:
         resp = self.session.execute(gql)
         assert resp.is_succeeded(), resp.error_msg()
         return resp
+
+    def update_entity(self, entity):
+        gql, vid = utils.create_update_entity(entity, self.vid_type)
+        # print(gql)
+        resp = self.session.execute(gql)
+        assert resp.is_succeeded(), resp.error_msg()
+        return resp, vid
